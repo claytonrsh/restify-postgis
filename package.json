@@ -1,6 +1,6 @@
 {
-  "name": "PostGIS-Parks",
-  "description": "A simple mapping application for finding National Parks and Historic Sites, powered by postGIS and Leaflet maps",
+  "name": "postgis-restify",
+  "description": "A simple mapping application, powered by postGIS and Leaflet maps",
   "version": "0.1.0",
   "private": false,
   "engines": {
@@ -18,7 +18,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/ryanj/restify-postGIS.git"
+    "url": "https://github.com/crusselsh/postgis-restify.git"
   },
   "scripts": {
     "start": "node server.js",

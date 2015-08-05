@@ -1,0 +1,43 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/bin/nodejs', '/usr/bin/npm', 'install' ]
+2 info using npm@1.4.21
+3 info using node@v0.10.25
+4 verbose readDependencies using package.json deps
+5 verbose install where, deps [ '/home/clayton/Documents/web_dev/parks_restify',
+5 verbose install   [ 'restify', 'config-multipaas', 'pg', 'pg-query', 'tap' ] ]
+6 info preinstall PostGIS-Parks@0.1.0
+7 verbose readDependencies using package.json deps
+8 verbose already installed skipping restify@^2.8.3 /home/clayton/Documents/web_dev/parks_restify
+9 verbose already installed skipping config-multipaas@0.1.0 /home/clayton/Documents/web_dev/parks_restify
+10 verbose already installed skipping pg@^3.6.0 /home/clayton/Documents/web_dev/parks_restify
+11 verbose already installed skipping pg-query@^0.10.0 /home/clayton/Documents/web_dev/parks_restify
+12 verbose already installed skipping tap@^0.4.13 /home/clayton/Documents/web_dev/parks_restify
+13 silly resolved []
+14 info build /home/clayton/Documents/web_dev/parks_restify
+15 verbose linkStuff [ false, false, false, '/home/clayton/Documents/web_dev' ]
+16 info linkStuff PostGIS-Parks@0.1.0
+17 verbose linkBins PostGIS-Parks@0.1.0
+18 verbose linkMans PostGIS-Parks@0.1.0
+19 verbose rebuildBundles PostGIS-Parks@0.1.0
+20 verbose rebuildBundles [ '.bin', 'config-multipaas', 'pg', 'pg-query', 'restify', 'tap' ]
+21 info install PostGIS-Parks@0.1.0
+22 info postinstall PostGIS-Parks@0.1.0
+23 verbose unsafe-perm in lifecycle true
+24 info PostGIS-Parks@0.1.0 Failed to exec postinstall script
+25 error PostGIS-Parks@0.1.0 postinstall: `npm run initdb`
+25 error Exit status 1
+26 error Failed at the PostGIS-Parks@0.1.0 postinstall script.
+26 error This is most likely a problem with the PostGIS-Parks package,
+26 error not with npm itself.
+26 error Tell the author that this fails on your system:
+26 error     npm run initdb
+26 error You can get their info via:
+26 error     npm owner ls PostGIS-Parks
+26 error There is likely additional logging output above.
+27 error System Linux 3.19.0-25-generic
+28 error command "/usr/bin/nodejs" "/usr/bin/npm" "install"
+29 error cwd /home/clayton/Documents/web_dev/parks_restify
+30 error node -v v0.10.25
+31 error npm -v 1.4.21
+32 error code ELIFECYCLE
+33 verbose exit [ 1, true ]

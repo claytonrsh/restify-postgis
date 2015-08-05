@@ -1,7 +1,7 @@
 var cc          = require('config-multipaas'),
     pg          = require('pg-query')
 
-var config      = cc({ 
+var config      = cc({
   table_name : process.env.TABLE_NAME || process.env.OPENSHIFT_APP_NAME || 'parks'
 })
 var pg_config   = config.get('POSTGRESQL_DB_URL'),
@@ -16,7 +16,7 @@ function createDBSchema(err, rows, result) {
   if(err && err.code == "ECONNREFUSED"){
     return console.error("DB connection unavailable, see README notes for setup assistance\n", err);
   }
-  var query = "CREATE TABLE "+table_name+" ( gid serial NOT NULL, name character varying(240), the_geom geometry, CONSTRAINT "+table_name+ "_pkey PRIMARY KEY (gid), CONSTRAINT enforce_dims_geom CHECK (st_ndims(the_geom) = 2), CONSTRAINT enforce_geotype_geom CHECK (geometrytype(the_geom) = 'POINT'::text OR the_geom IS NULL),CONSTRAINT enforce_srid_geom CHECK (st_srid(the_geom) = 4326) ) WITH ( OIDS=FALSE );";
+  var query = "CREATE TABLE "+table_name+" ( gid serial NOT NULL, name character varying(240), geom geometry, CONSTRAINT "+table_name+ "_pkey PRIMARY KEY (gid), CONSTRAINT enforce_dims_geom CHECK (st_ndims(the_geom) = 2), CONSTRAINT enforce_geotype_geom CHECK (geometrytype(the_geom) = 'POINT'::text OR the_geom IS NULL),CONSTRAINT enforce_srid_geom CHECK (st_srid(the_geom) = 4326) ) WITH ( OIDS=FALSE );";
   pg(query, addSpatialIndex);
 };
 
@@ -47,16 +47,16 @@ function importMapPoints(err, rows, result) {
 function insertMapPinSQL(pin) {
   var query = '';
   var escape = /'/g
-  
+
   if(typeof(pin) == 'object'){
-    query = "('" + pin.Name.replace(/'/g,"''") + "', ST_GeomFromText('POINT(" + pin.pos[0] +" "+ pin.pos[1] + " )', 4326))";  
+    query = "('" + pin.Name.replace(/'/g,"''") + "', ST_GeomFromText('POINT(" + pin.pos[0] +" "+ pin.pos[1] + " )', 4326))";
   }
   return query;
 };
 
 function init_db(){
   pg('CREATE EXTENSION postgis;', createDBSchema);
-} 
+}
 
 function flush_db(){
   pg('DROP TABLE '+ table_name+';', function(err, rows, result){
@@ -64,15 +64,15 @@ function flush_db(){
     console.log(response);
     return response;
   });
-} 
+}
 
 function select_box(req, res, next){
   //clean these variables:
   var query = req.query;
   var limit = (typeof(query.limit) !== "undefined") ? query.limit : 40;
-  if(!(Number(query.lat1) 
-    && Number(query.lon1) 
-    && Number(query.lat2) 
+  if(!(Number(query.lat1)
+    && Number(query.lon1)
+    && Number(query.lat2)
     && Number(query.lon2)
     && Number(limit)))
   {
